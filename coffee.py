@@ -9,3 +9,17 @@ class Coffee:
     @property
     def name(self):
         return self._name
+    
+    def orders(self):
+        from order import Order
+        return [order for order in Order.all_orders if order.coffee == self]
+
+    def unique_customers(self):
+        orders = self.orders()
+        unique_customers = []
+
+        for order in orders:
+            if order.customer not in unique_customers:
+                unique_customers.append(order.customer)
+        
+        return unique_customers
