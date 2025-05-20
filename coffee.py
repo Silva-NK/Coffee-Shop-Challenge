@@ -6,13 +6,16 @@ class Coffee:
         
         self._name = name
 
+
     @property
     def name(self):
         return self._name
     
+
     def orders(self):
         from order import Order
         return [order for order in Order.all_orders if order.coffee == self]
+
 
     def unique_customers(self):
         orders = self.orders()
@@ -24,8 +27,10 @@ class Coffee:
         
         return unique_customers
     
+
     def num_orders(self):
         return len(self.orders())
+    
     
     def average_price(self):
         orders = self.orders()
