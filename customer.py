@@ -28,3 +28,8 @@ class Customer:
                 unique_coffees.append(order.coffee)
         
         return unique_coffees
+
+
+    def create_order(self, coffee, price):
+        from order import Order
+        return Order(self, coffee, price)

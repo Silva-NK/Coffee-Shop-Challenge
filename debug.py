@@ -15,6 +15,7 @@ Co2 = Coffee("Maciatto")
 
 Co4 = Coffee("Espresso")
 Co5 = Coffee("Americano")
+Co6 = Coffee("Depresso")
 
 # Tests for Customer name validation
 O1 = Order(C1, Co2, 8.50)
@@ -45,17 +46,41 @@ O9 = Order(C1, Co5, 3.50)
 O10 = Order(C2, Co1, 6.50)
 O11 = Order(C2, Co5, 5.50)
 
+#Test for create_order association
+C1.create_order(Co4, 8.50)
+C2.create_order(Co5, 4.50)
+
 print([O.coffee.name for O in C1.orders()])
 print([O.coffee.name for O in C2.orders()])
 # print([O.coffee.name for O in C3.orders()])
 # print([O.coffee.name for O in C4.orders()])
 
 # Tests for unique_coffee list
-print("C1's Coffees:", [coffee.name for coffee in C1.unique_coffees()])
-print("C2's Coffees:", [coffee.name for coffee in C2.unique_coffees()])
+print("Jane's Coffees:", [coffee.name for coffee in C1.unique_coffees()])
+print("John's Coffees:", [coffee.name for coffee in C2.unique_coffees()])
 
 # Tests for unique_customer list
-print("Co1's Coffees:", [customer.name for customer in Co1.unique_customers()])
-print("Co2's Coffees:", [customer.name for customer in Co2.unique_customers()])
-print("Co4's Coffees:", [customer.name for customer in Co4.unique_customers()])
-print("Co5's Coffees:", [customer.name for customer in Co5.unique_customers()])
+print("Latte Customers:", [customer.name for customer in Co1.unique_customers()])
+print("Maciatto Customers:", [customer.name for customer in Co2.unique_customers()])
+print("Espresso Customers:", [customer.name for customer in Co4.unique_customers()])
+print("Americano Customers:", [customer.name for customer in Co5.unique_customers()])
+
+#Test for all_orders after create_order
+print("All Orders:")
+for order in Order.all():
+    print(f"{order.customer.name} ordered {order.coffee.name} at ${order.price}")
+
+#Test for order number aggregation
+print("Number of Latte orders: ", Co1.num_orders())
+print("Number of Maciatto orders: ", Co2.num_orders())
+print("Number of Espresso orders: ", Co4.num_orders())
+print("Number of Americano orders: ", Co5.num_orders())
+print("Number of Depresso orders: ", Co6.num_orders())
+
+
+#Test for average_price aggregation
+print("Average Latte Price:", Co1.average_price())
+print("Average Maciatto Price:", Co2.average_price())
+print("Average Espresso Price:", Co4.average_price())
+print("Average Americano Price:", Co5.average_price())
+print("Average Depresso Price:", Co6.average_price())

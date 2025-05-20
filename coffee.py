@@ -23,3 +23,15 @@ class Coffee:
                 unique_customers.append(order.customer)
         
         return unique_customers
+    
+    def num_orders(self):
+        return len(self.orders())
+    
+    def average_price(self):
+        orders = self.orders()
+        if orders:
+            total = sum(order.price for order in orders)
+            avg =  total / len(orders)
+            return round(avg, 2)
+        return 0
+        
